@@ -3,27 +3,31 @@ var $ = function (selector) {
   var selectors = [];
 
   if(selector.includes('.') || selector.includes('#')) {
-    var string = selector.replace('.',',.').replace('#',',#');
-    selectors = string.split(',').filter(Boolean);
+    selectors = selector.replace('.',',.').replace('#',',#').split(',').filter(Boolean);
   } else {
     elements = document.getElementsByTagName(selector);
     return elements;
   }
-  // console.log(selectors);
 
   if (selectors.length === 1) {
     var propertyName = selectors[0].slice(1);
     if(selectors[0].includes('#')) {
       elements.push(document.getElementById(propertyName));
+      return elements;
     } else {
       elements = document.getElementsByClassName(propertyName);
+      return elements;
     }
   } else if (selectors.length === 2) {
     elements = document.getElementsByTagName(selectors[0]);
   } else {
     elements = document.getElementsByTagName(selectors[0]);
-    console.log(selector);
+    var arr = [].slice.call(elements);
+    console.log(arr);
+    hasClass = function(element) {
+      return element.className != '';
+    };
+    elements = arr.filter(hasClass);
   }
-
   return elements;
 };
