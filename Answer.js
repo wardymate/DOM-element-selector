@@ -25,7 +25,7 @@ var $ = function (selector) {
     var arr = [].slice.call(elements);
     console.log(arr);
     hasClass = function(element) {
-      return element.className != '';
+      return element.className !== '';
     };
     elements = arr.filter(hasClass);
   }
