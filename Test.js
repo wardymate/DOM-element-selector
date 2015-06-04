@@ -73,5 +73,5 @@ for (answerName in answerList){
 
 }
 
-console.log("\n------------------------\n\nTests Passed:", testsPassed, "of", expectedResult.questions ); 
+console.log("\n------------------------\n\nTests Passed:", testsPassed, "of", expectedResult.questions );
 }
