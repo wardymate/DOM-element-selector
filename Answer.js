@@ -3,9 +3,7 @@ var $ = function (selector) {
   var selectors = [];
 
   if (!String.prototype.includes) {
-    String.prototype.includes = function() {'use strict';
-      return String.prototype.indexOf.apply(this, arguments) !== -1;
-    };
+    addStringInclude();
   }
 
   if (!Array.prototype.filter) {
@@ -66,6 +64,12 @@ var $ = function (selector) {
     elements = document.getElementsByClassName(propertyName);
   }
   return elements;
+};
+
+addStringInclude = function() {
+  String.prototype.includes = function() {'use strict';
+      return String.prototype.indexOf.apply(this, arguments) !== -1;
+    };
 };
 
 addArrayFilter = function () {
