@@ -25,21 +25,28 @@ var $ = function (selector) {
     elements = document.getElementsByTagName(selectors[0]);
   } else {
     elements = document.getElementsByTagName(selectors[0]);
+    shiftAndSort(selectors);
+    elements = filterElements(elements, selectors);
+  }
+
+  function shiftAndSort(selectors) {
     selectors.shift();
     selectors.sort();
+  }
+
+  function filterElements(elements, selectors) {
     var arr = [].slice.call(elements);
     var requiredId = selectors[0].slice(1);
     var requiredClass = selectors[1].slice(1);
-
     hasId = function(element) {
       return element.id === requiredId;
     };
-
     hasClass = function(element) {
       return element.className === requiredClass;
     };
-    elements = arr.filter(hasId).filter(hasClass);
-    console.log(elements);
+    elements = arr.filter(hasId);
+    elements.filter(hasClass);
+    return elements;
   }
 
   function selectorIncludesClassOrId(selector) {
