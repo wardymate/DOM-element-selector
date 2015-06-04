@@ -10,6 +10,14 @@ var $ = function (selector) {
     addArrayFilter();
   }
 
+  if (!Array.prototype.indexOf) {
+    addArrayIndexOf();
+  }
+
+  if (!Document.getElementsByClassName()) {
+    addDocumentGetElementsByClassName();
+  }
+
   if(selectorIncludesClassOrId(selector)) {
     selectors = selector.replace('.',',.').replace('#',',#').split(',').filter(Boolean);
   } else {
@@ -93,5 +101,52 @@ addArrayFilter = function () {
       }
     }
     return res;
+  };
+};
+
+addArrayIndexOf = function() {
+  Array.prototype.indexOf = function(searchElement, fromIndex) {
+
+    var k;
+    if (this == null) {
+      throw new TypeError('"this" is null or not defined');
+    }
+    var O = Object(this);
+    var len = O.length >>> 0;
+    if (len === 0) {
+      return -1;
+    }
+    var n = +fromIndex || 0;
+    if (Math.abs(n) === Infinity) {
+      n = 0;
+    }
+    if (n >= len) {
+      return -1;
+    }
+    k = Math.max(n >= 0 ? n : len - Math.abs(n), 0);
+    while (k < len) {
+      if (k in O && O[k] === searchElement) {
+        return k;
+      }
+      k++;
+    }
+    return -1;
+  };
+};
+
+addDocumentGetElementsByClassName = function () {
+  document.getElementsByClassName = function (className) {
+    var result = [];
+    var elements = document.getElementsByTagName('*');
+    var len = elements.length;
+    var i;
+    var node;
+    for (i = 0; i < len; i += 1) {
+      node = elements[i];
+      if ((' ' + (node.className || node.getAttribute('class')) + ' ').indexOf(' ' + className + ' ') >= 0) {
+        result.push(node);
+      }
+    }
+    return result;
   };
 };
