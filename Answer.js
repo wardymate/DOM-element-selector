@@ -14,7 +14,7 @@ var $ = function (selector) {
     addArrayIndexOf();
   }
 
-  if (!Document.getElementsByClassName()) {
+  if (!Document.getElementsByClassName) {
     addDocumentGetElementsByClassName();
   }
 
