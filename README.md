@@ -25,8 +25,8 @@ continued to pass and making the code as readable as possible.
 ### Installation and viewing the tests
 
 ```sh
-$ git clone https://github.com/wardymate/Dom-manipulation.git
-$ cd Dom-manipulation
+$ git clone https://github.com/wardymate/DOM-element-selector
+$ cd DOM-element-selector
 $ open Test.html
 ```
 
