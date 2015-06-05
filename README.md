@@ -1,4 +1,4 @@
-# Dom Element Selection prgramming
+# Dom Element Selector
 
 ### Introduction
 
