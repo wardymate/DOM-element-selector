@@ -29,6 +29,7 @@ var $ = function (selector) {
     selectIdOrClass(selectors);
   } else if (selectors.length === 2) {
     elements = document.getElementsByTagName(selectors[0]);
+    shiftAndSort(selectors);
   } else {
     elements = document.getElementsByTagName(selectors[0]);
     shiftAndSort(selectors);
@@ -108,7 +109,7 @@ addArrayIndexOf = function() {
   Array.prototype.indexOf = function(searchElement, fromIndex) {
 
     var k;
-    if (this == null) {
+    if (this === null) {
       throw new TypeError('"this" is null or not defined');
     }
     var O = Object(this);
